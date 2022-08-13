@@ -1,4 +1,5 @@
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+import { CoursesDialogComponent } from '../../courses/courses-dialog/courses-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CoursesService } from '../services/courses.service';
 import { Course } from '../model/course';
@@ -26,6 +27,12 @@ export class CoursesComponent implements OnInit {
         return of([])
       })
     );
+  }
+
+  openDialog(courseId: string) {
+    this.dialog.open(CoursesDialogComponent, {
+      data: this.coursesService.findById(courseId)
+    })
   }
 
   onError(errorMsg: string) {
